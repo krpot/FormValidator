@@ -9,7 +9,7 @@ class TextFieldTest {
 
     @Test
     fun `getText should be invoked`() {
-        val textField = TextField(getText = getTextCallback)
+        val textField = TextField(getText = getTextCallback, onShowError = {})
         val result = textField.getText()
         assertEquals(result, "Awesome")
     }

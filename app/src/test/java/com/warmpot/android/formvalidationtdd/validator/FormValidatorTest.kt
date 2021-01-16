@@ -8,16 +8,15 @@ class FormValidatorTest {
     @Test
     fun `addField should add text field`() {
         val formValidator = FormValidator()
-        formValidator.addField(TextField(getText = {""}))
+        formValidator.addField(TextField(getText = { "" }, onShowError = {}))
         assertTrue(formValidator.formFields.first() is TextField)
     }
 
     @Test
     fun `addField should add more than one field`() {
         val formValidator = FormValidator()
-        formValidator.addField(TextField(getText = {""}))
-        formValidator.addField(RadioGroupField { true })
+        formValidator.addField(TextField(getText = { "" }, onShowError = {}))
+        formValidator.addField(RadioGroupField(isChecked = { true }, onShowError = {}))
         assertEquals(formValidator.formFields.size, 2)
     }
-
 }

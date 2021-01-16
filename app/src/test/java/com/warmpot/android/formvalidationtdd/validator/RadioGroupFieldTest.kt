@@ -7,7 +7,7 @@ class RadioGroupFieldTest {
 
     @Test
     fun `isChecked should be invoked`() {
-        val formField = RadioGroupField { true }
+        val formField = RadioGroupField(isChecked = { true }, onShowError = {})
         assertTrue(formField.isChecked())
     }
 }

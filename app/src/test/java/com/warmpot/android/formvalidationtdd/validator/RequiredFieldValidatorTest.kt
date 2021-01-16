@@ -13,7 +13,7 @@ class RequiredFieldValidatorTest {
     fun `validate WHEN text required and empty THEN should return fail`() {
         val validator = RequiredFieldValidator()
         val result: ValidationResult =
-            validator.validate(TextField(isRequired = { true }, getText = { text }))
+            validator.validate(TextField(isRequired = { true }, getText = { text }, onShowError = {}))
         assertNotNull(result.error)
     }
 
@@ -22,7 +22,7 @@ class RequiredFieldValidatorTest {
         text = " "
         val validator = RequiredFieldValidator()
         val result: ValidationResult =
-            validator.validate(TextField(isRequired = { false }, getText = { text }))
+            validator.validate(TextField(isRequired = { false }, getText = { text }, onShowError = {}))
         assertNull(result.error)
     }
 
@@ -31,7 +31,7 @@ class RequiredFieldValidatorTest {
         text = "a"
         val validator = RequiredFieldValidator()
         val result: ValidationResult =
-            validator.validate(TextField(isRequired = { false }, getText = { text }))
+            validator.validate(TextField(isRequired = { false }, getText = { text }, onShowError = {}))
         assertNull(result.error)
     }
 
@@ -40,7 +40,7 @@ class RequiredFieldValidatorTest {
         text = "abcd ere"
         val validator = RequiredFieldValidator()
         val result: ValidationResult =
-            validator.validate(TextField(isRequired = { false }, getText = { text }))
+            validator.validate(TextField(isRequired = { false }, getText = { text }, onShowError = {}))
         assertNull(result.error)
     }
 
@@ -48,7 +48,7 @@ class RequiredFieldValidatorTest {
     fun `validate WHEN text not required THEN should not return fail`() {
         val validator = RequiredFieldValidator()
         val result: ValidationResult =
-            validator.validate(TextField(isRequired = { false }, getText = { text }))
+            validator.validate(TextField(isRequired = { false }, getText = { text }, onShowError = {}))
         assertNull(result.error)
     }
 
@@ -57,7 +57,7 @@ class RequiredFieldValidatorTest {
         isChecked = false
         val validator = RequiredFieldValidator()
         val result: ValidationResult =
-            validator.validate(RadioGroupField(isRequired = { true }, isChecked = { isChecked }))
+            validator.validate(RadioGroupField(isRequired = { true }, isChecked = { isChecked }, onShowError = {}))
         assertNotNull(result.error)
     }
 
@@ -66,7 +66,7 @@ class RequiredFieldValidatorTest {
         isChecked = true
         val validator = RequiredFieldValidator()
         val result: ValidationResult =
-            validator.validate(RadioGroupField(isRequired = { true }, isChecked = { isChecked }))
+            validator.validate(RadioGroupField(isRequired = { true }, isChecked = { isChecked }, onShowError = {}))
         assertNull(result.error)
     }
 
@@ -75,7 +75,7 @@ class RequiredFieldValidatorTest {
         isChecked = false
         val validator = RequiredFieldValidator()
         val result: ValidationResult =
-            validator.validate(RadioGroupField(isRequired = { false }, isChecked = { isChecked }))
+            validator.validate(RadioGroupField(isRequired = { false }, isChecked = { isChecked }, onShowError = {}))
         assertNull(result.error)
     }
 
@@ -84,7 +84,7 @@ class RequiredFieldValidatorTest {
         isChecked = true
         val validator = RequiredFieldValidator()
         val result: ValidationResult =
-            validator.validate(RadioGroupField(isRequired = { false }, isChecked = { isChecked }))
+            validator.validate(RadioGroupField(isRequired = { false }, isChecked = { isChecked }, onShowError = {}))
         assertNull(result.error)
     }
 }
