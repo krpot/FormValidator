@@ -77,8 +77,8 @@ class MainActivity : AppCompatActivity() {
     private val contactMethodField by lazy(LazyThreadSafetyMode.NONE) {
         binding.run {
             RadioGroupField(
-                isRequired = { true },
                 isChecked = { !preferredContactMethodGroup.nothingSelected() },
+                isRequired = { true },
                 onShowError = { error -> contactMethodErrorTxt.text = error },
                 validators = listOf(
                     RequiredFieldValidator(
