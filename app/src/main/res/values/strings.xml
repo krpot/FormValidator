@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">FormValidation</string>
+    <string name="sign_up">Sign up</string>
+    <string name="user_name">User name</string>
+    <string name="mail_address">Email address</string>
+    <string name="mobile_number">Mobile number</string>
+    <string name="preferred_contact_method">Preferred Contact Method</string>
+    <string name="email">Email</string>
+    <string name="mobile">Mobile</string>
+    <string name="save_changes">Save Changes</string>
+    <string name="other">Other</string>
+    <string name="sports">Sports</string>
+    <string name="reading">Reading</string>
+    <string name="hobbies">Hobbies</string>
+
+
+    <string name="username_required_message">User name must be entered</string>
+    <string name="email_required_message">Email address must be entered</string>
+    <string name="mobile_required_message">Mobile number must be entered</string>
+    <string name="email_invalid_format_message">Email address is invalid format</string>
+    <string name="mobile_invalid_format_message">Mobile number is invalid format</string>
+    <string name="contact_method_select_message">Please select one option</string>
+</resources>
