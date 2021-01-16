@@ -33,62 +33,70 @@ class MainActivity : AppCompatActivity() {
     private lateinit var formValidator: FormValidator
 
     private fun initFormValidator() {
-        formValidator = FormValidator(
-            listOf(
-                TextField(
-                    getText = { usernameEdt.text() },
-                    isRequired = { true },
-                    onShowError = { error -> usernameTil.error = error },
-                    validators = listOf(
-                        RequiredFieldValidator(
-                            //message = getString(R.string.username_required_message)
-                        )
-                    )
-                ),
-                TextField(
-                    getText = { emailEdt.text() },
-                    isRequired = { emailRbtn.isChecked },
-                    onShowError = { error -> emailTil.error = error },
-                    validators = listOf(
-                        RequiredFieldValidator(
-                            message = getString(R.string.email_required_message),
-                        ),
-                        PatternFieldValidator(
-                            pattern = PatternFieldValidator.EMAIL_PATTERN,
-                            message = getString(R.string.email_invalid_format_message)
-                        )
-                    )
-                ),
-                TextField(
-                    getText = { mobileEdt.text() },
-                    isRequired = { mobileRbtn.isChecked },
-                    onShowError = { error -> mobileTil.error = error },
-                    validators = listOf(
-                        RequiredFieldValidator(
-                            message = getString(R.string.mobile_required_message)
-                        ),
-                        PatternFieldValidator(
-                            pattern = PatternFieldValidator.AUSTRALIAN_MOBILE_PATTERN,
-                            message = getString(R.string.mobile_invalid_format_message)
-                        )
-                    )
-                ),
-                RadioGroupField(
-                    isRequired = { true },
-                    isChecked = { !preferredContactMethodGroup.nothingSelected() },
-                    onShowError = { error -> contactMethodErrorTxt.text = error },
-                    validators = listOf(
-                        RequiredFieldValidator(
-                            message = getString(R.string.contact_method_select_message)
-                        )
-                    )
+        val usernameField = TextField(
+            getText = { usernameEdt.text() },
+            isRequired = { true },
+            onShowError = { error -> usernameTil.error = error },
+            validators = listOf(
+                RequiredFieldValidator(
+                    message = getString(R.string.username_required_message)
                 )
             )
         )
 
-        usernameEdt.addTextChangedListener(TextChangedListener(formValidator.formFields[0]))
-        emailEdt.addTextChangedListener(TextChangedListener(formValidator.formFields[1]))
-        mobileEdt.addTextChangedListener(TextChangedListener(formValidator.formFields[2]))
+        val emailField = TextField(
+            getText = { emailEdt.text() },
+            isRequired = { emailRbtn.isChecked },
+            onShowError = { error -> emailTil.error = error },
+            validators = listOf(
+                RequiredFieldValidator(
+                    message = getString(R.string.email_required_message),
+                ),
+                PatternFieldValidator(
+                    pattern = PatternFieldValidator.EMAIL_PATTERN,
+                    message = getString(R.string.email_invalid_format_message)
+                )
+            )
+        )
+
+        val mobileField = TextField(
+            getText = { mobileEdt.text() },
+            isRequired = { mobileRbtn.isChecked },
+            onShowError = { error -> mobileTil.error = error },
+            validators = listOf(
+                RequiredFieldValidator(
+                    message = getString(R.string.mobile_required_message)
+                ),
+                PatternFieldValidator(
+                    pattern = PatternFieldValidator.AUSTRALIAN_MOBILE_PATTERN,
+                    message = getString(R.string.mobile_invalid_format_message)
+                )
+            )
+        )
+
+        val contactMethodField = RadioGroupField(
+            isRequired = { true },
+            isChecked = { !preferredContactMethodGroup.nothingSelected() },
+            onShowError = { error -> contactMethodErrorTxt.text = error },
+            validators = listOf(
+                RequiredFieldValidator(
+                    message = getString(R.string.contact_method_select_message)
+                )
+            )
+        )
+
+        formValidator = FormValidator(
+            listOf(
+                usernameField,
+                emailField,
+                mobileField,
+                contactMethodField
+            )
+        )
+
+        usernameEdt.addTextChangedListener(TextChangedListener(usernameField))
+        emailEdt.addTextChangedListener(TextChangedListener(emailField))
+        mobileEdt.addTextChangedListener(TextChangedListener(mobileField))
 
         preferredContactMethodGroup.setOnCheckedChangeListener { _, _ ->
             formValidator.validateForm()
@@ -97,8 +105,6 @@ class MainActivity : AppCompatActivity() {
         findViewById<Button>(R.id.saveBtn).setOnClickListener {
             formValidator.validateForm()
         }
-
-
     }
 }
 
